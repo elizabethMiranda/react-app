@@ -1,22 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { listProduct } from '../services/ProductService';
 
-const initProducts = [
-    { 
-        name: 'Monitor Samsung',
-        price: 500,    
-        description: 'Monitor de 24 pulgadas', 
-    },
-    { 
-        name: 'Iphone 14',
-        price: 800,    
-        description: 'El telefono es Increible', 
-    }
-]
 export const ProductApp = () => {
-
-
-
-    const [produts, setProducts] = useState(initProducts)
+    const [produts, setProducts] = useState([])
+    useEffect(()=>{
+        const result = listProduct();
+        setProducts(result);
+    },[]);
     return(
         <>
             <h1>Hola mundo react!</h1>
